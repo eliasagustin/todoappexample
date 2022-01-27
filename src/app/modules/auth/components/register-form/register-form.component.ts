@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, MinValidator, Validators } from '@angular/forms';
+import { AuthTestService } from '@modules/auth/services/auth-test.service';
 
 @Component({
   selector: 'app-register-form',
@@ -10,11 +11,19 @@ export class RegisterFormComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({});
   
-  constructor() { }
+  constructor( private authService: AuthTestService ) {
+
+   }
 
   ngOnInit(): void {
-    this.registerForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+
+    this.registerForm = new FormGroup(
+      {
+      email: new FormControl('', {
+        validators: [Validators.required, Validators.email],
+        asyncValidators:this.authService.uniqueEmailValidator(),
+        updateOn: 'blur'
+      }),
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       phone: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -35,7 +44,7 @@ export class RegisterFormComponent implements OnInit {
   }
   testUploaded(): void{
     const mockData = {
-      phone: 'unknown'
+      email: 'tu@vieja.com'
     }
     this.registerForm.patchValue(mockData)
   }

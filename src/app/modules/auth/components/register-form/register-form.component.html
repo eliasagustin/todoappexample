@@ -5,7 +5,7 @@
     </div>
 
     <pre>
-        {{registerForm.value | json}}
+        {{registerForm.pending | json}}
     </pre>
 
     <div class="text-label d-flex d-all-center">
@@ -17,7 +17,7 @@
     </div>
     <br>
     <div>
-        <button class="btn-primary" (click)="testUploaded()">Moodifica telefono</button>
+        <button class="btn-primary" (click)="testUploaded()">Cargar Existente</button>
     </div>
 
     <form [formGroup]="registerForm"  class="form d-flex">
