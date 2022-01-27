@@ -29,6 +29,10 @@ export class RegisterFormComponent implements OnInit {
       phone: new FormControl('', [Validators.required, Validators.minLength(3)]),
       aboutMe: new FormControl('', [Validators.required, Validators.minLength(3)])
     })
+    const formControlPhone = this.registerForm.get('phone') as FormControl;
+    formControlPhone.valueChanges.subscribe( (res) => {
+      console.log('[', res, ']');
+    })
   }
 
   testLoaded(): void {

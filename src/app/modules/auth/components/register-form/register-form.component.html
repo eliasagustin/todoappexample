@@ -4,12 +4,14 @@
         <i class="logo-icon uil uil-apps"></i>
     </div>
 
-    <pre>
-        {{registerForm.pending | json}}
+    <pre>registerForm.value  = {{registerForm.value | json}}
     </pre>
 
     <div class="text-label d-flex d-all-center">
-        Crear Cuenta
+        registerForm.invalid = {{registerForm.invalid}}
+    </div>
+    <div class="text-label d-flex d-all-center">
+        registerForm.pending = {{registerForm.pending}}
     </div>
     <br>
     <div>
